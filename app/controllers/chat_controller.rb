@@ -1,5 +1,5 @@
-require 'httparty'
-require 'dotenv/load'
+require "httparty"
+require "dotenv/load"
 
 class ChatController < ApplicationController
   protect_from_forgery with: :exception
@@ -11,7 +11,7 @@ class ChatController < ApplicationController
     return redirect_to root_path unless session[:authenticated]
 
     user_input = params[:prompt]
-    response = HTTParty.post('https://api.openai.com/v1/chat/completions',
+    response = HTTParty.post("https://api.openai.com/v1/chat/completions",
                              headers: {
                                "Content-Type" => "application/json",
                                "Authorization" => "Bearer #{ENV['OPENAI_API_KEY']}"
@@ -51,5 +51,4 @@ class ChatController < ApplicationController
     reset_session
     redirect_to root_path, notice: "You have been logged out."
   end
-
 end
