@@ -1,0 +1,17 @@
+<h2>Chat with GPT</h2>
+
+<%= turbo_frame_tag "chat_form" do %>
+  <%= form_with url: '/chat', method: :post do |f| %>
+    <p>Prompt:</p>
+    <%= f.text_area :prompt, rows: 3 %>
+    <br>
+    <%= f.submit 'Send' %>
+  <% end %>
+<% end %>
+
+<%= turbo_frame_tag "chat_response" do %>
+  <% if @reply.present? %>
+    <h3>Response:</h3>
+    <p><%= @reply %></p>
+  <% end %>
+<% end %>
